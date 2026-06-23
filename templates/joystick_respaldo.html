@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="refresh" content="2">
+
+<style>
+#hoja{
+    background:#020617;
+    font-family:Arial;
+    text-align:center;
+    color:white;
+}
+
+#titulo{
+    color:#60a5fa;
+    font-size:46px;
+    text-shadow:0px 0px 18px #60a5fa;
+}
+
+#menu{
+    margin:20px;
+}
+
+#menu a{
+    padding:12px 35px;
+    margin:8px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    border:2px solid #60a5fa;
+    border-radius:12px;
+    background:#07111f;
+    box-shadow:0px 0px 12px #60a5fa;
+}
+
+#contenedor{
+    width:900px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:260px 500px;
+    gap:35px;
+}
+
+#panel{
+    border:4px solid #60a5fa;
+    border-radius:18px;
+    padding:25px;
+    background:#031326;
+    box-shadow:0px 0px 25px #60a5fa;
+    min-height:420px;
+}
+
+#texto{
+    color:#60a5fa;
+    font-size:28px;
+    text-shadow:0px 0px 10px #60a5fa;
+}
+
+#valor{
+    color:#60a5fa;
+    font-size:38px;
+    font-weight:bold;
+    border:1px solid #1d4ed8;
+    border-radius:10px;
+    padding:10px;
+    background:#071a33;
+}
+
+#joystick{
+    width:480px;
+    height:480px;
+    background:#1e293b;
+    border-radius:50%;
+    margin:auto;
+    position:relative;
+    border:6px solid #60a5fa;
+    box-shadow:0px 0px 35px #60a5fa;
+}
+
+#linea1{
+    position:absolute;
+    top:238px;
+    left:0;
+    width:480px;
+    border-top:2px solid #60a5fa;
+}
+
+#linea2{
+    position:absolute;
+    left:238px;
+    top:0;
+    height:480px;
+    border-left:2px solid #60a5fa;
+}
+
+#circulo1{
+    position:absolute;
+    left:80px;
+    top:80px;
+    width:320px;
+    height:320px;
+    border:2px solid #2563eb;
+    border-radius:50%;
+}
+
+#circulo2{
+    position:absolute;
+    left:155px;
+    top:155px;
+    width:170px;
+    height:170px;
+    border:2px solid #2563eb;
+    border-radius:50%;
+}
+
+#centro{
+    position:absolute;
+    left:220px;
+    top:220px;
+    width:40px;
+    height:40px;
+    background:#0f172a;
+    border:3px solid #60a5fa;
+    border-radius:50%;
+    box-shadow:0px 0px 15px #60a5fa;
+}
+
+#palanca{
+    position:absolute;
+
+    left:
+    {% if ejeX > 0 %}
+        310px
+    {% else %}
+        135px
+    {% endif %};
+
+    top:
+    {% if ejeY > 0 %}
+        135px
+    {% else %}
+        310px
+    {% endif %};
+
+    width:55px;
+    height:55px;
+    background:#60a5fa;
+    border-radius:50%;
+    box-shadow:0px 0px 30px #60a5fa;
+}
+
+#estado{
+    margin-top:25px;
+    color:#60a5fa;
+    font-size:22px;
+    font-weight:bold;
+}
+
+#pie{
+    margin-top:30px;
+    color:#60a5fa;
+    font-size:20px;
+    border:3px solid #60a5fa;
+    width:650px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:15px;
+    border-radius:15px;
+    background:#07111f;
+    box-shadow:0px 0px 15px #60a5fa;
+}
+</style>
+</head>
+
+<body id="hoja">
+
+<h1 id="titulo">JOYSTICK XY - Benjamín Valdebenito</h1>
+
+<div id="menu">
+<a href="/">INICIO</a>
+<a href="/radar">RADAR</a>
+<a href="/joystick">JOYSTICK</a>
+</div>
+
+<div id="contenedor">
+
+<div id="panel">
+<h2 id="texto">DATOS DEL EJE</h2>
+
+<p>EJE X</p>
+<div id="valor">{{ ejeX }}</div>
+
+<p>EJE Y</p>
+<div id="valor">{{ ejeY }}</div>
+
+<div id="estado">
+Dirección:
+{% if ejeX > 0 and ejeY > 0 %}
+Arriba derecha
+{% elif ejeX < 0 and ejeY > 0 %}
+Arriba izquierda
+{% elif ejeX < 0 and ejeY < 0 %}
+Abajo izquierda
+{% elif ejeX > 0 and ejeY < 0 %}
+Abajo derecha
+{% else %}
+Centro
+{% endif %}
+</div>
+</div>
+
+<div id="joystick">
+<div id="linea1"></div>
+<div id="linea2"></div>
+<div id="circulo1"></div>
+<div id="circulo2"></div>
+<div id="centro"></div>
+<div id="palanca"></div>
+</div>
+
+</div>
+
+<div id="pie">
+Visualización tipo joystick para representar la posición X-Y
+</div>
+
+</body>
+</html>
